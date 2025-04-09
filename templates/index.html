@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: #4361ee;
+            border-color: #4361ee;
+        }
+        .btn-primary:hover {
+            background-color: #3a56d4;
+            border-color: #3a56d4;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4361ee;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .upload-area {
+            border: 2px dashed #4361ee;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="logo mb-4">
+                            <i class="fas fa-brain me-2"></i>Brain Tumor Detection
+                        </div>
+                        <p class="text-muted mb-4">Upload an MRI scan to detect brain tumor type</p>
+                        
+                        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                            <div class="upload-area p-4">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                    <h5>Drag & Drop or Browse</h5>
+                                    <p class="text-muted">Supported formats: PNG, JPG, JPEG</p>
+                                </div>
+                                <div class="input-group">
+                                    <input type="file" name="file" class="form-control" id="fileInput" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg mt-3">
+                                <i class="fas fa-magic me-2"></i> Analyze MRI
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.querySelector('.upload-area').style.borderColor = '#4CAF50';
+                document.querySelector('.upload-area i').className = 'fas fa-check-circle fa-3x text-success';
+                document.querySelector('.upload-area h5').textContent = 'File Selected';
+            }
+        });
+    </script>
+</body>
+</html>
