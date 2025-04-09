@@ -46,12 +46,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .masked-img {
-            max-height: 400px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -108,18 +102,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        {% if tumor_detected %}
-                        <div class="row mt-4">
-                            <div class="col-md-12 text-center">
-                                <h5>Tumor Segmentation</h5>
-                                <img src="{{ url_for('static', filename='uploads/' + masked_filename) }}" 
-                                     class="img-fluid masked-img" 
-                                     alt="Segmented Tumor">
-                                <p class="mt-2">Tumor Size: {{ tumor_size|default('0') }}% of the image</p>
-                            </div>
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
             </div>
